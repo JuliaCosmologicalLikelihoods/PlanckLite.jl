@@ -1,0 +1,9 @@
+name = "PlanckLite"
+uuid = "688fd668-1337-4257-8459-6da9299ff286"
+authors = ["Marco Bonici <bonici.marco@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+NPZ = "15e1cf62-19b3-5cfa-8e77-841668bca605"

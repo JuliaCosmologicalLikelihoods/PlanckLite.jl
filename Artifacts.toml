@@ -1,0 +1,6 @@
+[planck_lite]
+git-tree-sha1 = "d49f6177da4907ac57bc867ad7e02c9ab5e2355a"
+
+    [[planck_lite.download]]
+    sha256 = "317399fbc5401807ea965cc21ae9420cec84228d65b026a64f1c5c98bd2178e7"
+    url = "https://gist.github.com/marcobonici/5686d3204a8c3bb2d937ab4a382f3a57/raw/d49f6177da4907ac57bc867ad7e02c9ab5e2355a.tar.gz"
