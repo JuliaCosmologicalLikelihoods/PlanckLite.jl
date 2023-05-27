@@ -22,7 +22,7 @@ function __init__()
     return nothing
 end
 
-function compone_Cℓ(Cltt::AbstractArray{T}, Clte, Clee) where {T}
+function bin_Cℓ(Cltt::AbstractArray{T}, Clte, Clee) where {T}
     Cltt_bin = zeros(T, nbintt)
     Clte_bin = zeros(T, nbinte)
     Clee_bin = zeros(T, nbinee)
