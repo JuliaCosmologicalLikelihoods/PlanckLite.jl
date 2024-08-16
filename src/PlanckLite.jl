@@ -22,6 +22,7 @@ function __init__()
     global nbinee = 199
     global ellmin = 2
     global matrix_W_TT = zeros(nbintt, 2507)
+
     for i in 1:nbintt
         matrix_W_TT[i,blmin_TT[i]+1+plmin_TT-ellmin:blmax_TT[i]+1+plmin_TT-ellmin] .= bin_w_TT[blmin_TT[i]+1:blmax_TT[i]+1]
     end
@@ -36,31 +37,7 @@ function __init__()
     return nothing
 end
 
-function bin_Cℓ(Cltt::AbstractArray{T}, Clte, Clee) where {T}
-    Cltt_bin = zeros(T, nbintt)
-    Clte_bin = zeros(T, nbinte)
-    Clee_bin = zeros(T, nbinee)
-
-    for i in 1:nbintt
-        Cltt_bin[i] = LinearAlgebra.dot(Cltt[blmin_TT[i]+plmin_TT-ellmin+1:blmax_TT[i]+plmin_TT+1-ellmin],bin_w_TT[blmin_TT[i]+1:blmax_TT[i]+1])
-    end
-
-    for i in 1:nbinte
-        Clte_bin[i] = LinearAlgebra.dot(Clte[blmin[i]+plmin-ellmin+1:blmax[i]+plmin+1-ellmin],bin_w[blmin[i]+1:blmax[i]+1])
-    end
-
-    for i in 1:nbinee
-        Clee_bin[i] = LinearAlgebra.dot(Clee[blmin[i]+plmin-ellmin+1:blmax[i]+plmin+1-ellmin],bin_w[blmin[i]+1:blmax[i]+1])
-    end
-
-    return vcat(Cltt_bin, Clte_bin, Clee_bin)
-end
-
-function bin_Cℓ(Cl::AbstractArray{T}, nbin, blmin, plmin, ellmin, blmax, bin_W) where {T}
-    return [LinearAlgebra.dot(Cl[blmin[i]+1+plmin-ellmin:blmax[i]+1+plmin-ellmin],bin_W[blmin[i]+1:blmax[i]+1]) for i in 1:nbin]
-end
-
-function new_bin_Cℓ(Cltt, Clte, Clee)
+function bin_Cℓ(Cltt, Clte, Clee)
     Cltt_bin = PlanckLite.matrix_W_TT * Cltt
     Clte_bin = PlanckLite.matrix_W * Clte
     Clee_bin = PlanckLite.matrix_W * Clee
