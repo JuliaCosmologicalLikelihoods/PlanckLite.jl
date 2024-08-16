@@ -45,15 +45,15 @@ function bin_Cℓ(Cltt, Clte, Clee)
     return vcat(Cltt_bin, Clte_bin, Clee_bin)
 end
 
-function ChainRulesCore.rrule(::typeof(new_bin_Cℓ), Cltt, Clte, Clee)
-    Y = new_bin_Cℓ(Cltt, Clte, Clee)
-    function new_bin_Cℓ_pullback(Ȳ)
+function ChainRulesCore.rrule(::typeof(bin_Cℓ), Cltt, Clte, Clee)
+    Y = bin_Cℓ(Cltt, Clte, Clee)
+    function bin_Cℓ_pullback(Ȳ)
         ∂Cltt = @thunk((Ȳ[1:nbintt]' * matrix_W_TT)[1,:])#, zeros(nbinte), zeros(nbinee))
         ∂Clte = @thunk((Ȳ[nbintt+1:nbintt+nbinte]' * matrix_W)[1,:])# vcat(zeros(nbintt), Ȳ[nbintt+1:nbintt+nbinte]' *matrix_W, zeros(nbinee))
         ∂Clee = @thunk((Ȳ[nbintt+nbinte+1:end]' * matrix_W)[1,:])#@thunk vcat(zeros(nbintt), zeros(nbinte), Ȳ[nbintt+nbinte+1:end]' *matrix_W)
         return NoTangent(), ∂Cltt, ∂Clte, ∂Clee
     end
-    return Y, new_bin_Cℓ_pullback
+    return Y, bin_Cℓ_pullback
 end
 
 end # module PlanckLite
